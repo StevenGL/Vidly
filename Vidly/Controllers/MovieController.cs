@@ -28,11 +28,14 @@ namespace Vidly.Controllers
 
             //var Test = ValidacionCedula.isCedulaValida("402-2529783-6");
 
-            return View(movie);
+            if (User.IsInRole(RoleName.CanManageMovies))
+            return View("List", movie);
 
-           
+            return View("ReadOnlyList", movie);
+
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genre = _context.Genres.ToList();
@@ -44,6 +47,7 @@ namespace Vidly.Controllers
 
             return View("MovieForm",viewmodel);
         }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Save(Movie movie)

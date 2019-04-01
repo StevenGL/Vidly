@@ -1,9 +1,42 @@
-﻿@model Vidly.Models.Movie
-
+﻿@model IEnumerable<Vidly.Models.Movie>
 @{
-    ViewBag.Title = "Random";
+    ViewBag.Title ="Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<h2>Movies</h2>
+@try
+{
+if (Model.Count() == 0)
+ {
+     <h2 class="danger">No hay ninguna pelicula regsitrada!!</h2>
+ }
 
+ else
+ {
+     <table class="table table-bordered table-hover">
+
+         <thead>
+         <tr>
+             <th>Movie</th>
+             <th>Genre</th>
+         </tr>
+         </thead>
+
+         <tbody>
+         @foreach (var movie in Model)
+         {
+             <tr>
+                 <td>@movie.Name</td>
+                 <td>@movie.Genre</td>
+             </tr>
+         }
+         </tbody>
+     </table>
+
+ }
+}
+catch
+{
+    
+}

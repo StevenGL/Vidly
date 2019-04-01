@@ -28,10 +28,10 @@ namespace Vidly.Controllers
 
             //var Test = ValidacionCedula.isCedulaValida("402-2529783-6");
 
-            if (User.IsInRole(RoleName.CanManageMovies))
+           // if (User.IsInRole(RoleName.CanManageMovies))
             return View("List", movie);
 
-            return View("ReadOnlyList", movie);
+           // return View("ReadOnlyList", movie);
 
         }
 
